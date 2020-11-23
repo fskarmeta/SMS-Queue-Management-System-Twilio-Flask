@@ -1,18 +1,12 @@
-from flask import Flask, render_template, request, jsonify
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
-from models import db, Queue
+from flask import Flask
+from flask import request, jsonify
+from models import Queue
 
 #Flask Config 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.config['DEBUG'] = True
 app.config['ENV'] = 'development'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
-Migrate(app, db)
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)  # init migrate upgrade downgrade
 
 
 queue = Queue()
@@ -45,4 +39,4 @@ def get_all():
     return jsonify({"msg": f"A list with {queue.size()} entries has been send"})
 
 if __name__ == '__main__':
-    manager.run()
+    app.run()

@@ -1,10 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import backref
-from sqlalchemy.sql.schema import ForeignKey
 import os
 from twilio.rest import Client
 from secret import akk,tok
-db = SQLAlchemy()
 
 
 
